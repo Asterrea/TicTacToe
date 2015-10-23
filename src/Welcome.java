@@ -1,3 +1,4 @@
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -21,6 +22,18 @@ public class Welcome extends JOptionPane{
 				
 			nLevel = (String)JOptionPane.showInputDialog(null, "Choose opponent difficulty.", null, 
 					JOptionPane.PLAIN_MESSAGE, icon, levels, "Level 1");
+		}
+		
+		if(!player.isEmpty() && !nLevel.isEmpty() && n >= 0){
+			JFrame frame = new JFrame();
+			Board board = new Board();
+			
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.add(board);
+			frame.pack();
+			frame.setLocationRelativeTo(null);
+			frame.setVisible(true);
+			
 		}
 	}
 }

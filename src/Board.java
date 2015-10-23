@@ -77,9 +77,10 @@ public class Board extends JPanel {
 
 
     public static void main (String[] args) {
-        JFrame frame = new JFrame ("MyPanel");
+        JFrame frame = new JFrame ("Board");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add (new Board());
+        frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible (true);
     }
