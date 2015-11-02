@@ -1,6 +1,8 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+
 import javax.swing.*;
 
 public class TicTacToe2{
@@ -39,8 +41,8 @@ public class TicTacToe2{
 	    public void actionPerformed(ActionEvent e){
 	        for(row = 0; row < 3; row++){
 	            for(col = 0; col < 3; col++){
-	                if (e.getSource() == board[row][col]){
-	                    board[row][col].setText(turn);
+	                if (e.getSource() == board[row][col] && turn == "X"){
+                    	board[row][col].setText(turn);
 	                    board[row][col].setEnabled(false);
 	                    Play();
 	                }
@@ -50,30 +52,391 @@ public class TicTacToe2{
     }
 	
 	public void Play(){
-		
-        curr = turn; //get the current player
-
-        //switch player
-        if(turn.equals("X"))
-                turn = "O";
-        else
-                turn = "X";
-
-        if(GameOver(row,col)){
-                JOptionPane.showMessageDialog(null, "Player " + curr + " won!", "GAME OVER!", JOptionPane.PLAIN_MESSAGE);
+		if(GameOver()){
+            JOptionPane.showMessageDialog(null, "Player " + turn + " won!", "GAME OVER!", JOptionPane.PLAIN_MESSAGE);
         }
+		else if(!maySlotsPa()){
+			JOptionPane.showMessageDialog(null, "Draw", "GAME OVER!", JOptionPane.PLAIN_MESSAGE);
+		}
+		else{
+	        if(turn.equals("X"))
+	        	turn = "O";
+	        else
+	            turn = "X";
+	        level1(turn);
+	        if(GameOver()){
+	            JOptionPane.showMessageDialog(null, "Player " + turn + " won!", "GAME OVER!", JOptionPane.PLAIN_MESSAGE);
+	        }
+	        else if(!maySlotsPa()){
+	            JOptionPane.showMessageDialog(null, "Draw", "GAME OVER!", JOptionPane.PLAIN_MESSAGE);
+	        }
+		}
+		if(turn.equals("X"))
+        	turn = "O";
+        else
+            turn = "X";
     }
+	
+	public boolean maySlotsPa(){
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 3; j++){
+				if(board[i][j].getText()=="")
+					return true;
+			}
+		}
+		return false;
+	}
+	
+	public void level1(String turn){
+		Random rand = new Random();
+		int r, c, found = 0;
+		if(turn == "O"){ //if it is computer's turn
+			if(board[0][0].getText()=="X"){
+				if(board[1][0].getText()=="X" && board[2][0].getText()==""){
+					board[2][0].setText(turn);
+					board[2][0].setEnabled(false);
+				}
+				else if(board[1][0].getText()=="" && board[2][0].getText()=="X"){
+					board[1][0].setText(turn);
+					board[1][0].setEnabled(false);
+				}
+				else if(board[0][1].getText()=="X" && board[0][2].getText()==""){
+					board[0][2].setText(turn);
+					board[0][2].setEnabled(false);
+				}
+				else if(board[0][1].getText()=="" && board[0][2].getText()=="X"){
+					board[0][1].setText(turn);
+					board[0][1].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="X" && board[2][2].getText()==""){
+					board[2][2].setText(turn);
+					board[2][2].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="" && board[2][2].getText()=="X"){
+					board[1][1].setText(turn);
+					board[1][1].setEnabled(false);
+				}
+				else{
+					found = 0;
+					while(found == 0){
+						r = rand.nextInt(3);
+						c = rand.nextInt(3);
+						if(board[r][c].getText()==""){
+							board[r][c].setText(turn);
+							board[r][c].setEnabled(false);
+							found = 1;
+						}
+					}
+				}
+			}
+			else if(board[1][0].getText()=="X"){
+				if(board[0][0].getText()=="X" && board[2][0].getText()==""){
+					board[2][0].setText(turn);
+					board[2][0].setEnabled(false);
+				}
+				else if(board[0][0].getText()=="" && board[2][0].getText()=="X"){
+					board[0][0].setText(turn);
+					board[0][0].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="X" && board[1][2].getText()==""){
+					board[1][2].setText(turn);
+					board[1][2].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="" && board[1][2].getText()=="X"){
+					board[1][1].setText(turn);
+					board[1][1].setEnabled(false);
+				}
+				else{
+					found = 0;
+					while(found == 0){
+						r = rand.nextInt(3);
+						c = rand.nextInt(3);
+						if(board[r][c].getText()==""){
+							board[r][c].setText(turn);
+							board[r][c].setEnabled(false);
+							found = 1;
+						}
+					}
+				}
+			}
+			else if(board[2][0].getText()=="X"){
+				if(board[0][0].getText()=="X" && board[1][0].getText()==""){
+					board[1][0].setText(turn);
+					board[1][0].setEnabled(false);
+				}
+				else if(board[0][0].getText()=="" && board[1][0].getText()=="X"){
+					board[0][0].setText(turn);
+					board[0][0].setEnabled(false);
+				}
+				else if(board[2][1].getText()=="X" && board[2][2].getText()==""){
+					board[2][2].setText(turn);
+					board[2][2].setEnabled(false);
+				}
+				else if(board[2][1].getText()=="" && board[2][2].getText()=="X"){
+					board[2][1].setText(turn);
+					board[2][1].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="X" && board[0][2].getText()==""){
+					board[0][2].setText(turn);
+					board[0][2].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="" && board[0][2].getText()=="X"){
+					board[1][1].setText(turn);
+					board[1][1].setEnabled(false);
+				}
+				else{
+					found = 0;
+					while(found == 0){
+						r = rand.nextInt(3);
+						c = rand.nextInt(3);
+						if(board[r][c].getText()==""){
+							board[r][c].setText(turn);
+							board[r][c].setEnabled(false);
+							found = 1;
+						}
+					}
+				}
+			}
+			else if(board[0][1].getText()=="X"){
+				if(board[0][0].getText()=="X" && board[0][2].getText()==""){
+					board[0][2].setText(turn);
+					board[0][2].setEnabled(false);
+				}
+				else if(board[0][0].getText()=="" && board[0][2].getText()=="X"){
+					board[0][0].setText(turn);
+					board[0][0].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="X" && board[2][1].getText()==""){
+					board[2][1].setText(turn);
+					board[2][1].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="" && board[2][1].getText()=="X"){
+					board[1][1].setText(turn);
+					board[1][1].setEnabled(false);
+				}
+				else{
+					found = 0;
+					while(found == 0){
+						r = rand.nextInt(3);
+						c = rand.nextInt(3);
+						if(board[r][c].getText()==""){
+							board[r][c].setText(turn);
+							board[r][c].setEnabled(false);
+							found = 1;
+						}
+					}
+				}
+			}
+			else if(board[1][1].getText()=="X"){
+				if(board[0][1].getText()=="X" && board[2][1].getText()==""){
+					board[2][1].setText(turn);
+					board[2][1].setEnabled(false);
+				}
+				else if(board[0][1].getText()=="" && board[2][1].getText()=="X"){
+					board[0][1].setText(turn);
+					board[0][1].setEnabled(false);
+				}
+				else if(board[1][0].getText()=="X" && board[1][2].getText()==""){
+					board[1][2].setText(turn);
+					board[1][2].setEnabled(false);
+				}
+				else if(board[1][0].getText()=="" && board[1][2].getText()=="X"){
+					board[1][0].setText(turn);
+					board[1][0].setEnabled(false);
+				}
+				else if(board[0][0].getText()=="X" && board[2][2].getText()==""){
+					board[2][2].setText(turn);
+					board[2][2].setEnabled(false);
+				}
+				else if(board[0][0].getText()=="" && board[2][2].getText()=="X"){
+					board[0][0].setText(turn);
+					board[0][0].setEnabled(false);
+				}
+				else if(board[0][2].getText()=="X" && board[2][0].getText()==""){
+					board[2][0].setText(turn);
+					board[2][0].setEnabled(false);
+				}
+				else if(board[0][2].getText()=="" && board[2][0].getText()=="X"){
+					board[0][2].setText(turn);
+					board[0][2].setEnabled(false);
+				}
+				else{
+					found = 0;
+					while(found == 0){
+						r = rand.nextInt(3);
+						c = rand.nextInt(3);
+						if(board[r][c].getText()==""){
+							board[r][c].setText(turn);
+							board[r][c].setEnabled(false);
+							found = 1;
+						}
+					}
+				}
+			}
+			else if(board[2][1].getText()=="X"){
+				if(board[0][1].getText()=="X" && board[1][1].getText()==""){
+					board[1][1].setText(turn);
+					board[1][1].setEnabled(false);
+				}
+				else if(board[0][1].getText()=="" && board[1][1].getText()=="X"){
+					board[0][1].setText(turn);
+					board[0][1].setEnabled(false);
+				}
+				else if(board[2][0].getText()=="X" && board[2][2].getText()==""){
+					board[2][2].setText(turn);
+					board[2][2].setEnabled(false);
+				}
+				else if(board[2][0].getText()=="" && board[2][2].getText()=="X"){
+					board[2][0].setText(turn);
+					board[2][0].setEnabled(false);
+				}
+				else{
+					found = 0;
+					while(found == 0){
+						r = rand.nextInt(3);
+						c = rand.nextInt(3);
+						if(board[r][c].getText()==""){
+							board[r][c].setText(turn);
+							board[r][c].setEnabled(false);
+							found = 1;
+						}
+					}
+				}
+			}
+			else if(board[0][2].getText()=="X"){
+				if(board[0][0].getText()=="X" && board[0][1].getText()==""){
+					board[0][1].setText(turn);
+					board[0][1].setEnabled(false);
+				}
+				else if(board[0][0].getText()=="" && board[0][1].getText()=="X"){
+					board[0][0].setText(turn);
+					board[0][0].setEnabled(false);
+				}
+				else if(board[1][2].getText()=="X" && board[2][2].getText()==""){
+					board[2][2].setText(turn);
+					board[2][2].setEnabled(false);
+				}
+				else if(board[1][2].getText()=="" && board[2][2].getText()=="X"){
+					board[1][2].setText(turn);
+					board[1][2].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="X" && board[2][0].getText()==""){
+					board[2][0].setText(turn);
+					board[2][0].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="" && board[2][0].getText()=="X"){
+					board[1][1].setText(turn);
+					board[1][1].setEnabled(false);
+				}
+				else{
+					found = 0;
+					while(found == 0){
+						r = rand.nextInt(3);
+						c = rand.nextInt(3);
+						if(board[r][c].getText()==""){
+							board[r][c].setText(turn);
+							board[r][c].setEnabled(false);
+							found = 1;
+						}
+					}
+				}
+			}
+			else if(board[1][2].getText()=="X"){
+				if(board[1][1].getText()=="X" && board[1][0].getText()==""){
+					board[1][0].setText(turn);
+					board[1][0].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="" && board[1][0].getText()=="X"){
+					board[1][1].setText(turn);
+					board[1][1].setEnabled(false);
+				}
+				else if(board[0][2].getText()=="X" && board[2][2].getText()==""){
+					board[2][2].setText(turn);
+					board[2][2].setEnabled(false);
+				}
+				else if(board[0][2].getText()=="" && board[2][2].getText()=="X"){
+					board[0][2].setText(turn);
+					board[0][2].setEnabled(false);
+				}
+				else{
+					found = 0;
+					while(found == 0){
+						r = rand.nextInt(3);
+						c = rand.nextInt(3);
+						if(board[r][c].getText()==""){
+							board[r][c].setText(turn);
+							board[r][c].setEnabled(false);
+							found = 1;
+						}
+					}
+				}
+			}
+			else if(board[2][2].getText()=="X"){
+				if(board[2][1].getText()=="X" && board[2][0].getText()==""){
+					board[2][0].setText(turn);
+					board[2][0].setEnabled(false);
+				}
+				else if(board[2][1].getText()=="" && board[2][0].getText()=="X"){
+					board[2][1].setText(turn);
+					board[2][1].setEnabled(false);
+				}
+				else if(board[1][2].getText()=="X" && board[0][2].getText()==""){
+					board[0][2].setText(turn);
+					board[0][2].setEnabled(false);
+				}
+				else if(board[1][2].getText()=="" && board[0][2].getText()=="X"){
+					board[1][2].setText(turn);
+					board[1][2].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="X" && board[0][0].getText()==""){
+					board[0][0].setText(turn);
+					board[0][0].setEnabled(false);
+				}
+				else if(board[1][1].getText()=="" && board[0][0].getText()=="X"){
+					board[1][1].setText(turn);
+					board[1][1].setEnabled(false);
+				}
+				else{
+					found = 0;
+					while(found == 0){
+						r = rand.nextInt(3);
+						c = rand.nextInt(3);
+						if(board[r][c].getText()==""){
+							board[r][c].setText(turn);
+							board[r][c].setEnabled(false);
+							found = 1;
+						}
+					}
+				}
+			}
+			else{ //if start palang ng game.. and computer gets to go first since walang X sa board
+				r = rand.nextInt(3);
+				c = rand.nextInt(3);
+				board[r][c].setText(turn);
+				board[r][c].setEnabled(false);
+			}
+		}
+	}
         
-    public boolean GameOver(int rMove, int cMove){
-	//check perpendicular
-		if(board[0][cMove].getText().equals(board[1][cMove].getText()) && board[0][cMove].getText().equals(board[2][cMove].getText()))
+    public boolean GameOver(){
+	//check perpendicular - vertical
+		if(board[0][0].getText()!="" && board[0][0].getText() == board[1][0].getText() && board[1][0].getText() == board[2][0].getText())
 			return true;
-		else if(board[rMove][0].getText().equals(board[rMove][1].getText()) && board[rMove][0].getText().equals(board[rMove][2].getText()))
+		else if(board[0][1].getText()!="" && board[0][1].getText() == board[1][1].getText() && board[1][1].getText() == board[2][1].getText())
+			return true;
+		else if(board[0][2].getText()!="" && board[0][2].getText() == board[1][2].getText() && board[1][2].getText() == board[2][2].getText())
+			return true;
+	//check perpendicular - horizontal
+		else if(board[0][0].getText()!="" && board[0][0].getText() == board[0][1].getText() && board[0][1].getText() == board[0][2].getText())
+			return true;
+		else if(board[1][0].getText()!="" && board[1][0].getText() == board[1][1].getText() && board[1][1].getText() == board[1][2].getText())
+			return true;
+		else if(board[2][0].getText()!="" && board[2][0].getText() == board[2][1].getText() && board[2][1].getText() == board[2][2].getText())
 			return true;
 	//check diagonal
-        else if(board[0][0].getText().equals(board[1][1].getText()) && board[0][0].getText().equals(board[2][2].getText()) && !(board[1][1].getText().equals("")))
+		else if(board[0][0].getText()!="" && board[0][0].getText() == board[1][1].getText() && board[1][1].getText() == board[2][2].getText())
 			return true;
-        else if(board[0][2].getText().equals(board[1][1].getText()) && board[0][2].getText().equals(board[2][0].getText()) && !(board[1][1].getText().equals("")))
+		else if(board[0][2].getText()!="" && board[0][2].getText() == board[1][1].getText() && board[1][1].getText() == board[2][0].getText())
 			return true;
 
 		return false;
