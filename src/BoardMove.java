@@ -1,10 +1,15 @@
 
 public class BoardMove {
 	private int turn;
-
-	public BoardMove(int turn) {
+	private String computerChar;
+	
+	public BoardMove(){
+		
+	}
+	public BoardMove(int turn, String computer_char) {
 		// TODO Auto-generated constructor stub
 		this.turn = turn;
+		this.computerChar = computer_char;
 	}
 
 	
@@ -13,11 +18,19 @@ public class BoardMove {
 		else if (this.turn == 1) return 0;
 		return turn;
 	}
-	public void computerPlay(String level){
+	
+	public void computerPlay(String level, Board b){
 		
 		switch(level){
 			case "Level 0":{
 				//call method for random
+				b.label3.setText(computerChar);
+				b.label3.setEnabled(false);
+				
+				if(!b.label5.isEnabled()){
+					b.label9.setText(computerChar);
+					b.label9.setEnabled(false);
+				}
 			}break;
 			case "Level 1":{
 				//call method for level 1
@@ -30,8 +43,8 @@ public class BoardMove {
 			}
 		}
 	}
-	
-	 boolean isGameOver(Board b){
+
+	boolean isGameOver(Board b){
 	    	if(!b.label1.isEnabled() && !b.label2.isEnabled() && !b.label3.isEnabled() && 
 	    			(b.label1.getText().equals(b.label2.getText()) && b.label1.getText().equals(b.label3.getText())))
 	    		return true;
@@ -61,6 +74,16 @@ public class BoardMove {
 			return false;
 	    	
 	    }
+	
+	
+	 public String getComputerChar() {
+		return computerChar;
+	}
+
+
+	public void setComputerChar(String computerChar) {
+		this.computerChar = computerChar;
+	}
 	 
 	public int getTurn() {
 		return turn;

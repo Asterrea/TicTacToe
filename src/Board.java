@@ -26,9 +26,11 @@ public class Board extends JPanel{
     private JButton buttonRestart;
     private JLabel labelWinner;
 
+    String playerName;
     int playerTurn;
     String level;
     String player_move = "";
+    String computer_move = "";
     
     public Board() {
         //construct components
@@ -93,18 +95,20 @@ public class Board extends JPanel{
     }
     
     public void showActionListenerBoard(String playerName, String nLevel, int turn){
-    	labelPlayerName.setText(labelPlayerName.getText().concat(playerName));
+    	labelPlayerName.setText(labelPlayerName.getText().concat(playerName)); 
     	labelDifficulty.setText(labelDifficulty.getText().concat(nLevel));
-    	level = nLevel;
-    	if(turn == 0){ //player is X
-    		playerTurn = turn;
-    		gameEvents.append(" > It's your Turn,"+ playerName + "\n");
+    	level = nLevel; //set Level
+    	this.playerName = playerName;
+    	
+    	if(turn == 0){ //Player is X
+    		player_move = "X"; computer_move="O";
+    		callPlayer(turn);
     	}
     	else if (turn == 1) { //Computer is X
-    		playerTurn = turn;
-    		gameEvents.append(" > Computer's Turn\n");
+    		player_move = "O"; computer_move="X";
+    		callComputer(turn);
     	}
-    	
+		
     	label1.addActionListener(new BoardListener());
     	label2.addActionListener(new BoardListener());
     	label3.addActionListener(new BoardListener());
@@ -116,20 +120,45 @@ public class Board extends JPanel{
     	label9.addActionListener(new BoardListener());
     	
     }
-
-    private void buttonMove(JButton button, BoardMove move){
-    	button.setText(player_move);
-		button.setEnabled(false);
+    
+    private void callComputer(int turn){
+    	BoardMove move = new BoardMove(turn, computer_move);
+    	
+    	playerTurn = turn;
+    	
+		gameEvents.append( playerTurn + " > Computer's Turn\n");
+		
+		move.computerPlay(level, this);
+		
 		move.setTurn(playerTurn);
 		playerTurn = move.nextTurn();
-		if(playerTurn == 0)
-			gameEvents.append(" > It's your Turn again. \n");
-		else if (playerTurn == 1){
-			gameEvents.append(" > Computer's Turn...\n");
-			//choose button
-			move.computerPlay(level);
-			}
+    }
+
+    private void callPlayer(int turn){
+    	BoardMove move = new BoardMove();
+    	
+    	playerTurn = turn;
 		
+		gameEvents.append(playerTurn + " > It's your Turn,"+ playerName + "\n");
+
+		move.setTurn(playerTurn);
+		playerTurn = move.nextTurn();
+
+    }
+    
+    private void buttonMove(JButton button){
+    	
+    	BoardMove move = new BoardMove();
+    	
+    	button.setText(player_move);
+		button.setEnabled(false);
+		
+		if(playerTurn == 0){
+			callPlayer(playerTurn);
+		}
+		else if (playerTurn == 1){
+			callComputer(playerTurn);
+		}
 
 		//check if win
 		gameEvents.append("Winner! " + move.isGameOver(this) + "\n");
@@ -138,33 +167,25 @@ public class Board extends JPanel{
 
 	class BoardListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			
-			BoardMove move = new BoardMove(playerTurn);
-			
-			if(player_move == "" || player_move == "O"){
-				player_move = "X";
-			}else if(player_move == "X"){
-				player_move = "O";
-			}
-			
+
 			if(e.getSource().equals(label1)){
-				buttonMove(label1, move);
+				buttonMove(label1);
 			}else if(e.getSource().equals(label2)){
-				buttonMove(label2, move);
+				buttonMove(label2);
 			}else if(e.getSource().equals(label3)){
-				buttonMove(label3, move);
+				buttonMove(label3);
 			}else if(e.getSource().equals(label4)){
-				buttonMove(label4, move);
+				buttonMove(label4);
 			}else if(e.getSource().equals(label5)){
-				buttonMove(label5, move);
+				buttonMove(label5);
 			}else if(e.getSource().equals(label6)){
-				buttonMove(label6, move);
+				buttonMove(label6);
 			}else if(e.getSource().equals(label7)){
-				buttonMove(label7, move);
+				buttonMove(label7);
 			}else if(e.getSource().equals(label8)){
-				buttonMove(label8, move);
+				buttonMove(label8);
 			}else if(e.getSource().equals(label9)){
-				buttonMove(label9, move);
+				buttonMove(label9);
 			}
 		}
 	}
