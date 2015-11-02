@@ -27,6 +27,7 @@ public class Board extends JPanel{
     private JLabel labelWinner;
 
     int playerTurn;
+    String player_move = "";
     
     public Board() {
         //construct components
@@ -93,11 +94,11 @@ public class Board extends JPanel{
     public void showActionListenerBoard(String playerName, String nLevel, int turn){
     	labelPlayerName.setText(labelPlayerName.getText().concat(playerName));
     	labelDifficulty.setText(labelDifficulty.getText().concat(nLevel));
-    	if(turn == 0){
+    	if(turn == 0){ //player is X
     		playerTurn = turn;
     		gameEvents.append(" > It's your Turn,"+ playerName + "\n");
     	}
-    	else if (turn == 1) {
+    	else if (turn == 1) { //Computer is X
     		playerTurn = turn;
     		gameEvents.append(" > Computer\n");
     	}
@@ -119,29 +120,66 @@ public class Board extends JPanel{
 			
 			BoardMove move = new BoardMove(playerTurn);
 			
+			if(player_move == "" || player_move == "O"){
+				player_move = "X";
+			}else if(player_move == "X"){
+				player_move = "O";
+			}
+			
 			if(e.getSource().equals(label1)){
-				gameEvents.append(" > taken\n");
+				label1.setText(player_move);
+				label1.setEnabled(false);
 				move.setTurn(playerTurn);
 				playerTurn = move.nextTurn();
 				gameEvents.append(playerTurn+"");
 			}else if(e.getSource().equals(label2)){
-				gameEvents.append(" > taken\n");
+				label2.setText(player_move);
+				label2.setEnabled(false);
+				move.setTurn(playerTurn);
+				playerTurn = move.nextTurn();
+				gameEvents.append(playerTurn+"");
 			}else if(e.getSource().equals(label3)){
-				gameEvents.append(" > taken");
-			}else if(e.getSource().equals(label3)){
-				gameEvents.append(" > taken");
+				label3.setText(player_move);
+				label3.setEnabled(false);
+				move.setTurn(playerTurn);
+				playerTurn = move.nextTurn();
+				gameEvents.append(playerTurn+"");
 			}else if(e.getSource().equals(label4)){
-				gameEvents.append(" > taken");
+				label4.setText(player_move);
+				label4.setEnabled(false);
+				move.setTurn(playerTurn);
+				playerTurn = move.nextTurn();
+				gameEvents.append(playerTurn+"");
 			}else if(e.getSource().equals(label5)){
-				gameEvents.append(" > taken");
+				label5.setText(player_move);
+				label5.setEnabled(false);
+				move.setTurn(playerTurn);
+				playerTurn = move.nextTurn();
+				gameEvents.append(playerTurn+"");
 			}else if(e.getSource().equals(label6)){
-				gameEvents.append(" > taken");
+				label6.setText(player_move);
+				label6.setEnabled(false);
+				move.setTurn(playerTurn);
+				playerTurn = move.nextTurn();
+				gameEvents.append(playerTurn+"");
 			}else if(e.getSource().equals(label7)){
-				gameEvents.append(" > taken");
+				label7.setText(player_move);
+				label7.setEnabled(false);
+				move.setTurn(playerTurn);
+				playerTurn = move.nextTurn();
+				gameEvents.append(playerTurn+"");
 			}else if(e.getSource().equals(label8)){
-				gameEvents.append(" > taken");
+				label8.setText(player_move);
+				label8.setEnabled(false);
+				move.setTurn(playerTurn);
+				playerTurn = move.nextTurn();
+				gameEvents.append(playerTurn+"");
 			}else if(e.getSource().equals(label9)){
-				gameEvents.append(" > taken");
+				label9.setText(player_move);
+				label9.setEnabled(false);
+				move.setTurn(playerTurn);
+				playerTurn = move.nextTurn();
+				gameEvents.append(playerTurn+"");
 			}
 		}
 	}
