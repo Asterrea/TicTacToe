@@ -10,9 +10,5 @@ public class TicTacToe {
 	public static void main(String[] args){
 		Welcome welcome = new Welcome();
 	}
-	
-	public void Play(JButton[][] b){
-		
-	}
 }
 	

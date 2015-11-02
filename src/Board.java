@@ -27,6 +27,7 @@ public class Board extends JPanel{
     private JLabel labelWinner;
 
     int playerTurn;
+    String level;
     String player_move = "";
     
     public Board() {
@@ -94,6 +95,7 @@ public class Board extends JPanel{
     public void showActionListenerBoard(String playerName, String nLevel, int turn){
     	labelPlayerName.setText(labelPlayerName.getText().concat(playerName));
     	labelDifficulty.setText(labelDifficulty.getText().concat(nLevel));
+    	level = nLevel;
     	if(turn == 0){ //player is X
     		playerTurn = turn;
     		gameEvents.append(" > It's your Turn,"+ playerName + "\n");
@@ -122,11 +124,13 @@ public class Board extends JPanel{
 		playerTurn = move.nextTurn();
 		if(playerTurn == 0)
 			gameEvents.append(" > It's your Turn again. \n");
-		else if (playerTurn == 1)
+		else if (playerTurn == 1){
 			gameEvents.append(" > Computer's Turn...\n");
-		//pass move
+			//choose button
+			move.computerPlay(level);
+			}
 		
-		
+
 		//check if win
 		gameEvents.append("Winner! " + move.isGameOver(this) + "\n");
 		

@@ -13,6 +13,23 @@ public class BoardMove {
 		else if (this.turn == 1) return 0;
 		return turn;
 	}
+	public void computerPlay(String level){
+		
+		switch(level){
+			case "Level 0":{
+				//call method for random
+			}break;
+			case "Level 1":{
+				//call method for level 1
+			}break;
+			case "Level 2":{
+				//call method for level 2
+			}
+			case "Level 3":{
+				//call method for level 3
+			}
+		}
+	}
 	
 	 boolean isGameOver(Board b){
 	    	if(!b.label1.isEnabled() && !b.label2.isEnabled() && !b.label3.isEnabled() && 
