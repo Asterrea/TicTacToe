@@ -13,7 +13,8 @@ public class BoardMove {
 		else if (this.turn == 1) return 0;
 		return turn;
 	}
-	
+
+	 
 	public int getTurn() {
 		return turn;
 	}

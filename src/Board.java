@@ -124,8 +124,42 @@ public class Board extends JPanel{
 			gameEvents.append(" > It's your Turn again. \n");
 		else if (playerTurn == 1)
 			gameEvents.append(" > Computer's Turn...\n");
+		//pass move
+		//check if win
+		gameEvents.append("Winner! " + isGameOver() + "\n");
+		
     }
     
+    private boolean isGameOver(){
+    	if(!label1.isEnabled() && !label2.isEnabled() && !label3.isEnabled() && 
+    			(label1.getText().equals(label2.getText()) && label1.getText().equals(label3.getText())))
+    		return true;
+    	else if(!label4.isEnabled() && !label5.isEnabled() && !label6.isEnabled() &&
+    			(label4.getText().equals(label5.getText()) && label4.getText().equals(label6.getText())))
+    		return true;
+    	else if(!label7.isEnabled() && !label8.isEnabled() && !label9.isEnabled() &&
+    			(label7.getText().equals(label8.getText()) && label7.getText().equals(label9.getText())))
+    		return true;
+    	else if(!label1.isEnabled() && !label4.isEnabled() && !label7.isEnabled() &&
+    			(label1.getText().equals(label4.getText()) && label1.getText().equals(label7.getText())))
+    		return true;
+    	else if(!label2.isEnabled() && !label5.isEnabled() && !label8.isEnabled() &&
+    			(label2.getText().equals(label5.getText()) && label2.getText().equals(label8.getText())))
+    		return true;
+    	else if(!label3.isEnabled() && !label6.isEnabled() && !label9.isEnabled() &&
+    			(label3.getText().equals(label6.getText()) && label3.getText().equals(label9.getText())))
+    		return true;
+    	
+    	else if(!label1.isEnabled() && !label5.isEnabled() && !label9.isEnabled() &&
+    			(label1.getText().equals(label5.getText()) && label1.getText().equals(label9.getText())))
+    		return true;
+    	else if(!label3.isEnabled() && !label5.isEnabled() && !label7.isEnabled() &&
+    			(label3.getText().equals(label5.getText()) && label3.getText().equals(label7.getText())))
+    		return true;
+    	
+		return false;
+    	
+    }
 	class BoardListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			
