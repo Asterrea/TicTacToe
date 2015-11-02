@@ -100,7 +100,7 @@ public class Board extends JPanel{
     	}
     	else if (turn == 1) { //Computer is X
     		playerTurn = turn;
-    		gameEvents.append(" > Computer\n");
+    		gameEvents.append(" > Computer's Turn\n");
     	}
     	
     	label1.addActionListener(new BoardListener());
@@ -115,6 +115,17 @@ public class Board extends JPanel{
     	
     }
 
+    private void buttonMove(JButton button, BoardMove move){
+    	button.setText(player_move);
+		button.setEnabled(false);
+		move.setTurn(playerTurn);
+		playerTurn = move.nextTurn();
+		if(playerTurn == 0)
+			gameEvents.append(" > It's your Turn again. \n");
+		else if (playerTurn == 1)
+			gameEvents.append(" > Computer's Turn...\n");
+    }
+    
 	class BoardListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			
@@ -127,59 +138,23 @@ public class Board extends JPanel{
 			}
 			
 			if(e.getSource().equals(label1)){
-				label1.setText(player_move);
-				label1.setEnabled(false);
-				move.setTurn(playerTurn);
-				playerTurn = move.nextTurn();
-				gameEvents.append(playerTurn+"");
+				buttonMove(label1, move);
 			}else if(e.getSource().equals(label2)){
-				label2.setText(player_move);
-				label2.setEnabled(false);
-				move.setTurn(playerTurn);
-				playerTurn = move.nextTurn();
-				gameEvents.append(playerTurn+"");
+				buttonMove(label2, move);
 			}else if(e.getSource().equals(label3)){
-				label3.setText(player_move);
-				label3.setEnabled(false);
-				move.setTurn(playerTurn);
-				playerTurn = move.nextTurn();
-				gameEvents.append(playerTurn+"");
+				buttonMove(label3, move);
 			}else if(e.getSource().equals(label4)){
-				label4.setText(player_move);
-				label4.setEnabled(false);
-				move.setTurn(playerTurn);
-				playerTurn = move.nextTurn();
-				gameEvents.append(playerTurn+"");
+				buttonMove(label4, move);
 			}else if(e.getSource().equals(label5)){
-				label5.setText(player_move);
-				label5.setEnabled(false);
-				move.setTurn(playerTurn);
-				playerTurn = move.nextTurn();
-				gameEvents.append(playerTurn+"");
+				buttonMove(label5, move);
 			}else if(e.getSource().equals(label6)){
-				label6.setText(player_move);
-				label6.setEnabled(false);
-				move.setTurn(playerTurn);
-				playerTurn = move.nextTurn();
-				gameEvents.append(playerTurn+"");
+				buttonMove(label6, move);
 			}else if(e.getSource().equals(label7)){
-				label7.setText(player_move);
-				label7.setEnabled(false);
-				move.setTurn(playerTurn);
-				playerTurn = move.nextTurn();
-				gameEvents.append(playerTurn+"");
+				buttonMove(label7, move);
 			}else if(e.getSource().equals(label8)){
-				label8.setText(player_move);
-				label8.setEnabled(false);
-				move.setTurn(playerTurn);
-				playerTurn = move.nextTurn();
-				gameEvents.append(playerTurn+"");
+				buttonMove(label8, move);
 			}else if(e.getSource().equals(label9)){
-				label9.setText(player_move);
-				label9.setEnabled(false);
-				move.setTurn(playerTurn);
-				playerTurn = move.nextTurn();
-				gameEvents.append(playerTurn+"");
+				buttonMove(label9, move);
 			}
 		}
 	}

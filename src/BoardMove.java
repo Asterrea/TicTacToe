@@ -7,6 +7,7 @@ public class BoardMove {
 		this.turn = turn;
 	}
 
+	
 	public int nextTurn(){
 		if(this.turn == 0)return 1;
 		else if (this.turn == 1) return 0;
