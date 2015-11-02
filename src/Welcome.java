@@ -3,14 +3,13 @@ import javax.swing.JOptionPane;
 
 
 public class Welcome extends JOptionPane{
-
 	public Welcome(){
-		int n = 0;
-		String player = null;
+		String player;
 		String nLevel = null;
+		int n = 0;
 		
 		Object[] options = {"I'd like to start first!" , "You're good, You start."};
-		Object[] levels = {"Level 1", "Level 2", "Level 3", "Level 4"};
+		Object[] levels = {"Level 0", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5"};
 		
 		do{
 			player = JOptionPane.showInputDialog(null, "Player Name:");
@@ -21,13 +20,14 @@ public class Welcome extends JOptionPane{
 					JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 				
 			nLevel = (String)JOptionPane.showInputDialog(null, "Choose opponent difficulty.", null, 
-					JOptionPane.PLAIN_MESSAGE, icon, levels, "Level 1");
+					JOptionPane.PLAIN_MESSAGE, icon, levels, "Level 0");
 		}
 		
 		if(!player.isEmpty() && !nLevel.isEmpty() && n >= 0){
 			JFrame frame = new JFrame();
 			Board board = new Board();
 			
+			board.showActionListenerBoard(player, nLevel , n);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.add(board);
 			frame.pack();

@@ -1,41 +1,53 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Board extends JPanel {
-    private JButton label4;
-    private JButton label1;
-    private JButton label7;
-    private JButton label2;
-    private JButton lbael5;
-    private JButton label8;
-    private JButton label3;
-    private JButton label6;
-    private JButton label9;
-    private JLabel labelTurn;
-    private JTextField inputPlayer;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class Board extends JPanel{
+    public JButton label4;
+    public JButton label1;
+    public JButton label7;
+    public JButton label2;
+    public JButton label5;
+    public JButton label8;
+    public JButton label3;
+    public JButton label6;
+    public JButton label9;
+    private JLabel labelPlayerName;
+    private JLabel labelDifficulty;
+    private JScrollPane scroll;
+    JTextArea gameEvents;
     private JButton buttonRestart;
     private JLabel labelWinner;
 
+    int playerTurn;
+    
     public Board() {
         //construct components
+    	label1 = new JButton ("");
+    	label2 = new JButton ("");
+    	label3 = new JButton ("");
         label4 = new JButton ("");
-        label1 = new JButton ("");
-        label7 = new JButton ("");
-        label2 = new JButton ("");
-        lbael5 = new JButton ("");
-        label8 = new JButton ("");
-        label3 = new JButton ("");
+        label5 = new JButton ("");
         label6 = new JButton ("");
+        label7 = new JButton ("");
+        label8 = new JButton ("");
         label9 = new JButton ("");
-        labelTurn = new JLabel ("Turn:");
-        inputPlayer = new JTextField (1);
+        labelPlayerName = new JLabel ("Player Name: ");
+        labelDifficulty = new JLabel("Level Difficulty: ");
+        gameEvents = new JTextArea(5,1);
+        scroll = new JScrollPane(gameEvents);
         buttonRestart = new JButton ("Play Again");
         labelWinner = new JLabel ("Player Wins!");
 
         //set components properties
-        inputPlayer.setEnabled (false);
+
 
         //adjust size and set layout
         setPreferredSize (new Dimension (773, 477));
@@ -46,13 +58,14 @@ public class Board extends JPanel {
         add (label1);
         add (label7);
         add (label2);
-        add (lbael5);
+        add (label5);
         add (label8);
         add (label3);
         add (label6);
         add (label9);
-        add (labelTurn);
-        add (inputPlayer);
+        add (labelPlayerName);
+        add (labelDifficulty);
+        add (scroll);
         add (buttonRestart);
         add (labelWinner);
 
@@ -61,27 +74,75 @@ public class Board extends JPanel {
         label1.setBounds (0, 0, 150, 160);
         label7.setBounds (0, 320, 150, 160);
         label2.setBounds (150, 0, 155, 160);
-        lbael5.setBounds (150, 160, 155, 160);
+        label5.setBounds (150, 160, 155, 160);
         label8.setBounds (150, 320, 155, 160);
         label3.setBounds (305, 0, 155, 160);
         label6.setBounds (305, 160, 155, 160);
         label9.setBounds (305, 320, 155, 160);
-        labelTurn.setBounds (475, 20, 35, 25);
-        inputPlayer.setBounds (510, 20, 235, 25);
-        buttonRestart.setBounds (570, 245, 100, 25);
-        labelWinner.setBounds (580, 205, 80, 25);
+        labelPlayerName.setBounds (475, 20, 300, 25);
+        labelDifficulty.setBounds(475 , 50, 300 ,25);
+        gameEvents.setBounds(475, 80, 280, 200);
+        scroll.setBounds(475,80, 280,200);
+        buttonRestart.setBounds (570, 345, 100, 25);
+        labelWinner.setBounds (580, 300, 80, 25);
         
         labelWinner.setVisible(false);
         buttonRestart.setVisible(false);
     }
-
-
-    public static void main (String[] args) {
-        JFrame frame = new JFrame ("Board");
-        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add (new Board());
-        frame.setLocationRelativeTo(null);
-        frame.pack();
-        frame.setVisible (true);
+    
+    public void showActionListenerBoard(String playerName, String nLevel, int turn){
+    	labelPlayerName.setText(labelPlayerName.getText().concat(playerName));
+    	labelDifficulty.setText(labelDifficulty.getText().concat(nLevel));
+    	if(turn == 0){
+    		playerTurn = turn;
+    		gameEvents.append(" > It's your Turn,"+ playerName + "\n");
+    	}
+    	else if (turn == 1) {
+    		playerTurn = turn;
+    		gameEvents.append(" > Computer\n");
+    	}
+    	
+    	label1.addActionListener(new BoardListener());
+    	label2.addActionListener(new BoardListener());
+    	label3.addActionListener(new BoardListener());
+    	label4.addActionListener(new BoardListener());
+    	label5.addActionListener(new BoardListener());
+    	label6.addActionListener(new BoardListener());
+    	label7.addActionListener(new BoardListener());
+    	label8.addActionListener(new BoardListener());
+    	label9.addActionListener(new BoardListener());
+    	
     }
+
+	class BoardListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			
+			BoardMove move = new BoardMove(playerTurn);
+			
+			if(e.getSource().equals(label1)){
+				gameEvents.append(" > taken\n");
+				move.setTurn(playerTurn);
+				playerTurn = move.nextTurn();
+				gameEvents.append(playerTurn+"");
+			}else if(e.getSource().equals(label2)){
+				gameEvents.append(" > taken\n");
+			}else if(e.getSource().equals(label3)){
+				gameEvents.append(" > taken");
+			}else if(e.getSource().equals(label3)){
+				gameEvents.append(" > taken");
+			}else if(e.getSource().equals(label4)){
+				gameEvents.append(" > taken");
+			}else if(e.getSource().equals(label5)){
+				gameEvents.append(" > taken");
+			}else if(e.getSource().equals(label6)){
+				gameEvents.append(" > taken");
+			}else if(e.getSource().equals(label7)){
+				gameEvents.append(" > taken");
+			}else if(e.getSource().equals(label8)){
+				gameEvents.append(" > taken");
+			}else if(e.getSource().equals(label9)){
+				gameEvents.append(" > taken");
+			}
+		}
+	}
 }
