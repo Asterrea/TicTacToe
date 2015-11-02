@@ -1,3 +1,5 @@
+import java.util.Random;
+
 
 public class BoardMove {
 	private int turn;
@@ -23,7 +25,6 @@ public class BoardMove {
 		
 		switch(level){
 			case "Level 0":{
-				//call method for random
 				b.label3.setText(computerChar);
 				b.label3.setEnabled(false);
 				

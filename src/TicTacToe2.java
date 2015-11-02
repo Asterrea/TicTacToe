@@ -63,7 +63,7 @@ public class TicTacToe2{
 	        	turn = "O";
 	        else
 	            turn = "X";
-	        level1(turn);
+	        level0(turn);
 	        if(GameOver()){
 	            JOptionPane.showMessageDialog(null, "Player " + turn + " won!", "GAME OVER!", JOptionPane.PLAIN_MESSAGE);
 	        }
@@ -87,6 +87,23 @@ public class TicTacToe2{
 		return false;
 	}
 	
+	
+	public void level0(String Turn){
+		int ckr = 1;
+		while(ckr == 1)
+		if(turn == "O"){
+		Random ran = new Random();
+		int x = ran.nextInt(3);
+		int y = ran.nextInt(3);
+		if(board[x][y].getText() == ""){
+			board[x][y].setText(turn);
+			board[x][y].setEnabled(false);
+			ckr = 0;
+		}
+		else
+			ckr = 1;
+		}
+	}
 	public void level1(String turn){
 		Random rand = new Random();
 		int r, c, found = 0;
