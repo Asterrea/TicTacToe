@@ -442,8 +442,4 @@ public class TicTacToe2{
 
 		return false;
 	}
-
-    public static void main(String[] args){
-        TicTacToe2 t2 = new TicTacToe2();
-	}
 }

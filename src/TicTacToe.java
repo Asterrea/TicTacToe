@@ -1,5 +1,3 @@
-import javax.swing.JButton;
-
 public class TicTacToe {
 	public static String turn = "X";
 	public static String curr = "";

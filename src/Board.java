@@ -123,6 +123,7 @@ public class Board extends JPanel{
     	label7.addActionListener(new BoardListener());
     	label8.addActionListener(new BoardListener());
     	label9.addActionListener(new BoardListener());
+    	buttonRestart.addActionListener(new BoardListener());
     	
     }
     
@@ -214,6 +215,8 @@ public class Board extends JPanel{
 				buttonMove(label8);
 			}else if(e.getSource().equals(label9)){
 				buttonMove(label9);
+			}else if(e.getSource().equals(buttonRestart)){
+
 			}
 		}
 	}
