@@ -105,7 +105,7 @@ public class BoardMove {
 			}break;
 			case "Level 1":{
 				//call method for level 1
-				TicTacToe2 tic = new TicTacToe2();
+				//TicTacToe2 tic = new TicTacToe2();
 			}break;
 			case "Level 2":{
 				//call method for level 2
