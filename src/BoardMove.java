@@ -25,7 +25,6 @@ public class BoardMove {
 		
 		switch(level){
 			case "Level 0":{
-
 				Random rnd = new Random();
 				int randomMove = rnd.nextInt(9-1 +1) + 1;
 					switch(randomMove){
@@ -109,11 +108,12 @@ public class BoardMove {
 			}break;
 			case "Level 2":{
 				//call method for level 2
-			}
+				TicTacToe4 ttt = new TicTacToe4();
+			}break;
 			case "Level 3":{
 				//call method for level 3
 
-			}
+			}break;
 		}
 	}
 

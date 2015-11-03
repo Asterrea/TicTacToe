@@ -87,6 +87,7 @@ public class TicTacToe2{
 		}
 		return false;
 	}
+
 	
 	public void level1(String turn){
 		Random rand = new Random();

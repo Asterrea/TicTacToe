@@ -1,3 +1,5 @@
+import java.awt.Window;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -28,8 +30,10 @@ public class Welcome extends JOptionPane{
 			Board board;
 			TicTacToe2  tic2;
 			TicTacToe3 tic3 = new TicTacToe3(n);
-			
+			TicTacToe4 tic4;
+
 			if(nLevel.equals("Level 1")) tic2 = new TicTacToe2();
+			else if(nLevel.equals("Level 2")) tic4 = new TicTacToe4();
 			else if(nLevel.equals("Level 3")) tic3.setVisible(true);
 			else {
 				board = new Board();
