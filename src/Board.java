@@ -31,6 +31,7 @@ public class Board extends JPanel{
     String level;
     String player_move = "";
     String computer_move = "";
+    int win;
     
     public Board() {
         //construct components
@@ -88,7 +89,7 @@ public class Board extends JPanel{
         gameEvents.setBounds(475, 80, 280, 200);
         scroll.setBounds(475,80, 280,200);
         buttonRestart.setBounds (570, 345, 100, 25);
-        labelWinner.setBounds (580, 300, 80, 25);
+        labelWinner.setBounds (580, 300, 200, 25);
         
         labelWinner.setVisible(false);
         buttonRestart.setVisible(false);
@@ -97,17 +98,21 @@ public class Board extends JPanel{
     public void showActionListenerBoard(String playerName, String nLevel, int turn){
     	labelPlayerName.setText(labelPlayerName.getText().concat(playerName)); 
     	labelDifficulty.setText(labelDifficulty.getText().concat(nLevel));
+    	playerTurn = turn;
     	level = nLevel; //set Level
     	this.playerName = playerName;
     	
-    	if(turn == 0){ //Player is X
-    		player_move = "X"; computer_move="O";
-    		callPlayer(turn);
-    	}
-    	else if (turn == 1) { //Computer is X
-    		player_move = "O"; computer_move="X";
-    		callComputer(turn);
-    	}
+    	BoardMove move = new BoardMove();
+    
+    		if(playerTurn == 0 && move.isGameOver(this)==false){ //Player is X
+        		player_move = "X"; computer_move="O";
+        		callPlayer(playerTurn);
+        	}
+        	else if (playerTurn == 1 && move.isGameOver(this)==false) { //Computer is X
+        		player_move = "O"; computer_move="X";
+        		callComputer(playerTurn);
+        	}
+    	
 		
     	label1.addActionListener(new BoardListener());
     	label2.addActionListener(new BoardListener());
@@ -125,25 +130,38 @@ public class Board extends JPanel{
     	BoardMove move = new BoardMove(turn, computer_move);
     	
     	playerTurn = turn;
-    	
-		gameEvents.append( playerTurn + " > Computer's Turn\n");
+    	System.out.println(playerTurn + " IN CALLCOMPUTER");
+		//check if win
 		
-		move.computerPlay(level, this);
-		
-		move.setTurn(playerTurn);
-		playerTurn = move.nextTurn();
+		if(move.isGameOver(this)==true && !labelWinner.isVisible()) {
+			gameEvents.append("Winner! " + move.isGameOver(this) + "\n");
+			labelWinner.setVisible(true);
+			labelWinner.setText((playerTurn) + " is the Winner!");
+			buttonRestart.setVisible(true);
+		}else{
+			gameEvents.append( playerTurn + " > Computer's Turn\n");
+			move.computerPlay(level, this);
+			move.setTurn(playerTurn);
+			playerTurn = move.nextTurn();
+			
+			callPlayer(playerTurn);
+		}
     }
 
     private void callPlayer(int turn){
     	BoardMove move = new BoardMove();
     	
     	playerTurn = turn;
-		
-		gameEvents.append(playerTurn + " > It's your Turn,"+ playerName + "\n");
-
-		move.setTurn(playerTurn);
-		playerTurn = move.nextTurn();
-
+    	System.out.println(playerTurn + " IN CALLPLAYER");
+    	
+//		else{
+			gameEvents.append(playerTurn + " > It's your Turn,"+ playerName + "\n");
+//			if(playerTurn==0){
+			
+				move.setTurn(playerTurn);
+				playerTurn = move.nextTurn();
+//			}
+//		}
     }
     
     private void buttonMove(JButton button){
@@ -153,15 +171,25 @@ public class Board extends JPanel{
     	button.setText(player_move);
 		button.setEnabled(false);
 		
-		if(playerTurn == 0){
-			callPlayer(playerTurn);
-		}
-		else if (playerTurn == 1){
-			callComputer(playerTurn);
-		}
-
+//		if(playerTurn == 0 && move.isGameOver(this)==false){
+//			System.out.println(playerTurn + "BEFORE CALLING CALLPLAYER");
+//			gameEvents.append(playerTurn + " > It's your Turn,"+ playerName + "\n");
+//			callPlayer(playerTurn);
+//			System.out.println(playerTurn + "AFTER CALLING CALLPLAYER");
+//		}
+//		else 
 		//check if win
-		gameEvents.append("Winner! " + move.isGameOver(this) + "\n");
+		if(move.isGameOver(this)==true && !labelWinner.isVisible()) {
+			gameEvents.append("Winner! " + move.isGameOver(this) + "\n");
+			labelWinner.setVisible(true);
+			labelWinner.setText((playerTurn) + " is the Winner!");
+			buttonRestart.setVisible(true);
+		}
+		if (playerTurn == 1 && move.isGameOver(this)==false){
+//			System.out.println(playerTurn + "BEFORE CALLING CALLCOMPUTER");
+			callComputer(playerTurn);
+//			System.out.println(playerTurn + "AFTER CALLING CALLCOMPUTER");
+		}
 		
     }
 

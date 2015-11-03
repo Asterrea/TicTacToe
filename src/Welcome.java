@@ -25,15 +25,19 @@ public class Welcome extends JOptionPane{
 		
 		if(!player.isEmpty() && !nLevel.isEmpty() && n >= 0){
 			JFrame frame = new JFrame();
-			Board board = new Board();
+			Board board;
+			TicTacToe2  tic;
 			
-			board.showActionListenerBoard(player, nLevel , n);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.add(board);
-			frame.pack();
-			frame.setLocationRelativeTo(null);
-			frame.setVisible(true);
-			
+			if(nLevel.equals("Level 1")) tic = new TicTacToe2();
+			else {
+				board = new Board();
+				board.showActionListenerBoard(player, nLevel , n);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.add(board);
+				frame.pack();
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+			}
 		}
 	}
 }

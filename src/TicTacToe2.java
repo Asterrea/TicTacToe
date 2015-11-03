@@ -20,6 +20,7 @@ public class TicTacToe2{
         frame.setSize(300, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel.setLayout(new GridLayout(3,3));
+        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         
         board = new JButton[3][3];
