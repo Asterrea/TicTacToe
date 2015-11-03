@@ -91,29 +91,29 @@ public class TicTacToe2{
 	public void level1(String turn){
 		Random rand = new Random();
 		int r, c, found = 0;
-		if(turn == "O"){ //if it is computer's turn
-			if(board[0][0].getText()=="X"){
-				if(board[1][0].getText()=="X" && board[2][0].getText()==""){
+		if(turn != ""){ //if it is computer's turn
+			if(board[0][0].getText()!=turn){
+				if(board[1][0].getText()!=turn && board[2][0].getText()==""){
 					board[2][0].setText(turn);
 					board[2][0].setEnabled(false);
 				}
-				else if(board[1][0].getText()=="" && board[2][0].getText()=="X"){
+				else if(board[1][0].getText()=="" && board[2][0].getText()!=turn){
 					board[1][0].setText(turn);
 					board[1][0].setEnabled(false);
 				}
-				else if(board[0][1].getText()=="X" && board[0][2].getText()==""){
+				else if(board[0][1].getText()!=turn && board[0][2].getText()==""){
 					board[0][2].setText(turn);
 					board[0][2].setEnabled(false);
 				}
-				else if(board[0][1].getText()=="" && board[0][2].getText()=="X"){
+				else if(board[0][1].getText()=="" && board[0][2].getText()!=turn){
 					board[0][1].setText(turn);
 					board[0][1].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="X" && board[2][2].getText()==""){
+				else if(board[1][1].getText()!=turn && board[2][2].getText()==""){
 					board[2][2].setText(turn);
 					board[2][2].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="" && board[2][2].getText()=="X"){
+				else if(board[1][1].getText()=="" && board[2][2].getText()!=turn){
 					board[1][1].setText(turn);
 					board[1][1].setEnabled(false);
 				}
@@ -130,20 +130,20 @@ public class TicTacToe2{
 					}
 				}
 			}
-			else if(board[1][0].getText()=="X"){
-				if(board[0][0].getText()=="X" && board[2][0].getText()==""){
+			else if(board[1][0].getText()!=turn){
+				if(board[0][0].getText()!=turn && board[2][0].getText()==""){
 					board[2][0].setText(turn);
 					board[2][0].setEnabled(false);
 				}
-				else if(board[0][0].getText()=="" && board[2][0].getText()=="X"){
+				else if(board[0][0].getText()=="" && board[2][0].getText()!=turn){
 					board[0][0].setText(turn);
 					board[0][0].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="X" && board[1][2].getText()==""){
+				else if(board[1][1].getText()!=turn && board[1][2].getText()==""){
 					board[1][2].setText(turn);
 					board[1][2].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="" && board[1][2].getText()=="X"){
+				else if(board[1][1].getText()=="" && board[1][2].getText()!=turn){
 					board[1][1].setText(turn);
 					board[1][1].setEnabled(false);
 				}
@@ -160,28 +160,28 @@ public class TicTacToe2{
 					}
 				}
 			}
-			else if(board[2][0].getText()=="X"){
-				if(board[0][0].getText()=="X" && board[1][0].getText()==""){
+			else if(board[2][0].getText()!=turn){
+				if(board[0][0].getText()!=turn && board[1][0].getText()==""){
 					board[1][0].setText(turn);
 					board[1][0].setEnabled(false);
 				}
-				else if(board[0][0].getText()=="" && board[1][0].getText()=="X"){
+				else if(board[0][0].getText()=="" && board[1][0].getText()!=turn){
 					board[0][0].setText(turn);
 					board[0][0].setEnabled(false);
 				}
-				else if(board[2][1].getText()=="X" && board[2][2].getText()==""){
+				else if(board[2][1].getText()!=turn && board[2][2].getText()==""){
 					board[2][2].setText(turn);
 					board[2][2].setEnabled(false);
 				}
-				else if(board[2][1].getText()=="" && board[2][2].getText()=="X"){
+				else if(board[2][1].getText()=="" && board[2][2].getText()!=turn){
 					board[2][1].setText(turn);
 					board[2][1].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="X" && board[0][2].getText()==""){
+				else if(board[1][1].getText()!=turn && board[0][2].getText()==""){
 					board[0][2].setText(turn);
 					board[0][2].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="" && board[0][2].getText()=="X"){
+				else if(board[1][1].getText()=="" && board[0][2].getText()!=turn){
 					board[1][1].setText(turn);
 					board[1][1].setEnabled(false);
 				}
@@ -198,20 +198,20 @@ public class TicTacToe2{
 					}
 				}
 			}
-			else if(board[0][1].getText()=="X"){
-				if(board[0][0].getText()=="X" && board[0][2].getText()==""){
+			else if(board[0][1].getText()!=turn){
+				if(board[0][0].getText()!=turn && board[0][2].getText()==""){
 					board[0][2].setText(turn);
 					board[0][2].setEnabled(false);
 				}
-				else if(board[0][0].getText()=="" && board[0][2].getText()=="X"){
+				else if(board[0][0].getText()=="" && board[0][2].getText()!=turn){
 					board[0][0].setText(turn);
 					board[0][0].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="X" && board[2][1].getText()==""){
+				else if(board[1][1].getText()!=turn && board[2][1].getText()==""){
 					board[2][1].setText(turn);
 					board[2][1].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="" && board[2][1].getText()=="X"){
+				else if(board[1][1].getText()=="" && board[2][1].getText()!=turn){
 					board[1][1].setText(turn);
 					board[1][1].setEnabled(false);
 				}
@@ -228,36 +228,36 @@ public class TicTacToe2{
 					}
 				}
 			}
-			else if(board[1][1].getText()=="X"){
-				if(board[0][1].getText()=="X" && board[2][1].getText()==""){
+			else if(board[1][1].getText()!=turn){
+				if(board[0][1].getText()!=turn && board[2][1].getText()==""){
 					board[2][1].setText(turn);
 					board[2][1].setEnabled(false);
 				}
-				else if(board[0][1].getText()=="" && board[2][1].getText()=="X"){
+				else if(board[0][1].getText()=="" && board[2][1].getText()!=turn){
 					board[0][1].setText(turn);
 					board[0][1].setEnabled(false);
 				}
-				else if(board[1][0].getText()=="X" && board[1][2].getText()==""){
+				else if(board[1][0].getText()!=turn && board[1][2].getText()==""){
 					board[1][2].setText(turn);
 					board[1][2].setEnabled(false);
 				}
-				else if(board[1][0].getText()=="" && board[1][2].getText()=="X"){
+				else if(board[1][0].getText()=="" && board[1][2].getText()!=turn){
 					board[1][0].setText(turn);
 					board[1][0].setEnabled(false);
 				}
-				else if(board[0][0].getText()=="X" && board[2][2].getText()==""){
+				else if(board[0][0].getText()!=turn && board[2][2].getText()==""){
 					board[2][2].setText(turn);
 					board[2][2].setEnabled(false);
 				}
-				else if(board[0][0].getText()=="" && board[2][2].getText()=="X"){
+				else if(board[0][0].getText()=="" && board[2][2].getText()!=turn){
 					board[0][0].setText(turn);
 					board[0][0].setEnabled(false);
 				}
-				else if(board[0][2].getText()=="X" && board[2][0].getText()==""){
+				else if(board[0][2].getText()!=turn && board[2][0].getText()==""){
 					board[2][0].setText(turn);
 					board[2][0].setEnabled(false);
 				}
-				else if(board[0][2].getText()=="" && board[2][0].getText()=="X"){
+				else if(board[0][2].getText()=="" && board[2][0].getText()!=turn){
 					board[0][2].setText(turn);
 					board[0][2].setEnabled(false);
 				}
@@ -274,20 +274,20 @@ public class TicTacToe2{
 					}
 				}
 			}
-			else if(board[2][1].getText()=="X"){
-				if(board[0][1].getText()=="X" && board[1][1].getText()==""){
+			else if(board[2][1].getText()!=turn){
+				if(board[0][1].getText()!=turn && board[1][1].getText()==""){
 					board[1][1].setText(turn);
 					board[1][1].setEnabled(false);
 				}
-				else if(board[0][1].getText()=="" && board[1][1].getText()=="X"){
+				else if(board[0][1].getText()=="" && board[1][1].getText()!=turn){
 					board[0][1].setText(turn);
 					board[0][1].setEnabled(false);
 				}
-				else if(board[2][0].getText()=="X" && board[2][2].getText()==""){
+				else if(board[2][0].getText()!=turn && board[2][2].getText()==""){
 					board[2][2].setText(turn);
 					board[2][2].setEnabled(false);
 				}
-				else if(board[2][0].getText()=="" && board[2][2].getText()=="X"){
+				else if(board[2][0].getText()=="" && board[2][2].getText()!=turn){
 					board[2][0].setText(turn);
 					board[2][0].setEnabled(false);
 				}
@@ -304,28 +304,28 @@ public class TicTacToe2{
 					}
 				}
 			}
-			else if(board[0][2].getText()=="X"){
-				if(board[0][0].getText()=="X" && board[0][1].getText()==""){
+			else if(board[0][2].getText()!=turn){
+				if(board[0][0].getText()!=turn && board[0][1].getText()==""){
 					board[0][1].setText(turn);
 					board[0][1].setEnabled(false);
 				}
-				else if(board[0][0].getText()=="" && board[0][1].getText()=="X"){
+				else if(board[0][0].getText()=="" && board[0][1].getText()!=turn){
 					board[0][0].setText(turn);
 					board[0][0].setEnabled(false);
 				}
-				else if(board[1][2].getText()=="X" && board[2][2].getText()==""){
+				else if(board[1][2].getText()!=turn && board[2][2].getText()==""){
 					board[2][2].setText(turn);
 					board[2][2].setEnabled(false);
 				}
-				else if(board[1][2].getText()=="" && board[2][2].getText()=="X"){
+				else if(board[1][2].getText()=="" && board[2][2].getText()!=turn){
 					board[1][2].setText(turn);
 					board[1][2].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="X" && board[2][0].getText()==""){
+				else if(board[1][1].getText()!=turn && board[2][0].getText()==""){
 					board[2][0].setText(turn);
 					board[2][0].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="" && board[2][0].getText()=="X"){
+				else if(board[1][1].getText()=="" && board[2][0].getText()!=turn){
 					board[1][1].setText(turn);
 					board[1][1].setEnabled(false);
 				}
@@ -342,20 +342,20 @@ public class TicTacToe2{
 					}
 				}
 			}
-			else if(board[1][2].getText()=="X"){
-				if(board[1][1].getText()=="X" && board[1][0].getText()==""){
+			else if(board[1][2].getText()!=turn){
+				if(board[1][1].getText()!=turn && board[1][0].getText()==""){
 					board[1][0].setText(turn);
 					board[1][0].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="" && board[1][0].getText()=="X"){
+				else if(board[1][1].getText()=="" && board[1][0].getText()!=turn){
 					board[1][1].setText(turn);
 					board[1][1].setEnabled(false);
 				}
-				else if(board[0][2].getText()=="X" && board[2][2].getText()==""){
+				else if(board[0][2].getText()!=turn && board[2][2].getText()==""){
 					board[2][2].setText(turn);
 					board[2][2].setEnabled(false);
 				}
-				else if(board[0][2].getText()=="" && board[2][2].getText()=="X"){
+				else if(board[0][2].getText()=="" && board[2][2].getText()!=turn){
 					board[0][2].setText(turn);
 					board[0][2].setEnabled(false);
 				}
@@ -372,28 +372,28 @@ public class TicTacToe2{
 					}
 				}
 			}
-			else if(board[2][2].getText()=="X"){
-				if(board[2][1].getText()=="X" && board[2][0].getText()==""){
+			else if(board[2][2].getText()!=turn){
+				if(board[2][1].getText()!=turn && board[2][0].getText()==""){
 					board[2][0].setText(turn);
 					board[2][0].setEnabled(false);
 				}
-				else if(board[2][1].getText()=="" && board[2][0].getText()=="X"){
+				else if(board[2][1].getText()=="" && board[2][0].getText()!=turn){
 					board[2][1].setText(turn);
 					board[2][1].setEnabled(false);
 				}
-				else if(board[1][2].getText()=="X" && board[0][2].getText()==""){
+				else if(board[1][2].getText()!=turn && board[0][2].getText()==""){
 					board[0][2].setText(turn);
 					board[0][2].setEnabled(false);
 				}
-				else if(board[1][2].getText()=="" && board[0][2].getText()=="X"){
+				else if(board[1][2].getText()=="" && board[0][2].getText()!=turn){
 					board[1][2].setText(turn);
 					board[1][2].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="X" && board[0][0].getText()==""){
+				else if(board[1][1].getText()!=turn && board[0][0].getText()==""){
 					board[0][0].setText(turn);
 					board[0][0].setEnabled(false);
 				}
-				else if(board[1][1].getText()=="" && board[0][0].getText()=="X"){
+				else if(board[1][1].getText()=="" && board[0][0].getText()!=turn){
 					board[1][1].setText(turn);
 					board[1][1].setEnabled(false);
 				}
